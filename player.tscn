@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://crkqssmru087f"]
+
+[ext_resource type="Script" path="res://player.gd" id="1_6j7kg"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_bf3q6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_txtws"]
+
+[node name="Player" type="AnimatableBody2D"]
+collision_layer = 4
+collision_mask = 3
+sync_to_physics = false
+script = ExtResource("1_6j7kg")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(20, 139)
+texture = SubResource("CanvasTexture_bf3q6")
+
+[node name="CollisionWall" type="CollisionShape2D" parent="."]
+scale = Vector2(1, 7)
+shape = SubResource("RectangleShape2D_txtws")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionBall" type="CollisionShape2D" parent="Area2D"]
+scale = Vector2(1.5, 7.5)
+shape = SubResource("RectangleShape2D_txtws")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

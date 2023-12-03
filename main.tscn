@@ -1,0 +1,54 @@
+[gd_scene load_steps=5 format=3 uid="uid://dp87dol6lm1aa"]
+
+[ext_resource type="PackedScene" uid="uid://crkqssmru087f" path="res://player.tscn" id="1_brjn7"]
+[ext_resource type="Script" path="res://main.gd" id="1_phyuh"]
+[ext_resource type="PackedScene" uid="uid://da1exan0mfhmu" path="res://level.tscn" id="2_i3s7h"]
+[ext_resource type="PackedScene" uid="uid://c1lrynavlabdg" path="res://ball.tscn" id="3_jlaej"]
+
+[node name="Main" type="Node"]
+script = ExtResource("1_phyuh")
+
+[node name="Player1" parent="." instance=ExtResource("1_brjn7")]
+position = Vector2(150, 325)
+
+[node name="Player2" parent="." instance=ExtResource("1_brjn7")]
+position = Vector2(1000, 325)
+action_up = "up_p2"
+action_down = "down_p2"
+
+[node name="Level" parent="." instance=ExtResource("2_i3s7h")]
+
+[node name="Ball" parent="." instance=ExtResource("3_jlaej")]
+position = Vector2(580, 325)
+
+[node name="StartPosition1" type="Marker2D" parent="."]
+position = Vector2(150, 325)
+
+[node name="StartPosition2" type="Marker2D" parent="."]
+position = Vector2(1000, 325)
+
+[node name="StartPositionBall" type="Marker2D" parent="."]
+position = Vector2(580, 325)
+
+[node name="Score1" type="Label" parent="."]
+offset_left = 400.0
+offset_top = 80.0
+offset_right = 410.0
+offset_bottom = 106.0
+theme_override_font_sizes/font_size = 50
+text = "0"
+
+[node name="Score2" type="Label" parent="."]
+offset_left = 750.0
+offset_top = 80.0
+offset_right = 790.0
+offset_bottom = 106.0
+theme_override_font_sizes/font_size = 50
+text = "0"
+
+[connection signal="touched" from="Player1" to="." method="_on_player_1_touched"]
+[connection signal="touched" from="Player2" to="." method="_on_player_2_touched"]
+[connection signal="down_touched" from="Level" to="." method="_on_level_down_touched"]
+[connection signal="left_touched" from="Level" to="." method="_on_level_left_touched"]
+[connection signal="right_touched" from="Level" to="." method="_on_level_right_touched"]
+[connection signal="up_touched" from="Level" to="." method="_on_level_up_touched"]
