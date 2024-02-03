@@ -12,6 +12,9 @@ func start_game():
 	p1_points = 0
 	p2_points = 0
 	$Player1.start($StartPosition1.position)
+	$Player1/AnimatedSprite2D.play("P1")
+	$Player2/AnimatedSprite2D.play("P2")
+	$Player2/AnimatedSprite2D.flip_v = true
 	$Player2.start($StartPosition2.position)
 	$Ball.start($StartPositionBall.position)
 	$Score1.text = "0"
@@ -27,17 +30,21 @@ func _on_level_down_touched(body):
 # tocou em um player = reflete verticalmente
 func _on_player_1_touched(body):
 	body.direction.x *= -1
+	$Ball.flip()
 
 func _on_player_2_touched(body):
 	body.direction.x *= -1
+	$Ball.flip()
 
 # tocou em um dos lados do level = da um ponto para o jogador, reseta a bola
 func _on_level_left_touched(_body):
 	p2_points += 1
+	$Ball.death()
 	$Score2.text = str(p2_points)
 	$Ball.start($StartPositionBall.position)
 
 func _on_level_right_touched(_body):
 	p1_points += 1
+	$Ball.death()
 	$Score1.text = str(p1_points)
 	$Ball.start($StartPositionBall.position)

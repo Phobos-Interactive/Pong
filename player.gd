@@ -12,8 +12,10 @@ func _physics_process(delta):
 	var velocity = Vector2.ZERO
 	if Input.is_action_pressed(action_up):
 		velocity.y -= 1
+		$AnimatedSprite2D.flip_h = true
 	if Input.is_action_pressed(action_down):
 		velocity.y += 1
+		$AnimatedSprite2D.flip_h = false
 		
 	if velocity.length() > 0:
 		velocity = velocity.normalized() * speed

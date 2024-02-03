@@ -1,8 +1,29 @@
-[gd_scene load_steps=4 format=3 uid="uid://crkqssmru087f"]
+[gd_scene load_steps=7 format=3 uid="uid://crkqssmru087f"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_6j7kg"]
+[ext_resource type="Texture2D" uid="uid://doh3rmi05o3ve" path="res://Sprites/Space Game/PNG/Small Spaceships/1/1_Red.png" id="2_5gev3"]
+[ext_resource type="Texture2D" uid="uid://cl0alwr781dsx" path="res://Sprites/Space Game/PNG/Small Spaceships/3/3_Green.png" id="3_qq6dt"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_bf3q6"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_j7qxk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_5gev3")
+}],
+"loop": false,
+"name": &"P1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_qq6dt")
+}],
+"loop": false,
+"name": &"P2",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_txtws"]
 
@@ -13,8 +34,16 @@ sync_to_physics = false
 script = ExtResource("1_6j7kg")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
 scale = Vector2(20, 139)
 texture = SubResource("CanvasTexture_bf3q6")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-7, -1)
+rotation = 1.57079
+scale = Vector2(0.322167, 0.223207)
+sprite_frames = SubResource("SpriteFrames_j7qxk")
+animation = &"P2"
 
 [node name="CollisionWall" type="CollisionShape2D" parent="."]
 scale = Vector2(1, 7)
