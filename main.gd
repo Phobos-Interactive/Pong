@@ -1,7 +1,8 @@
 extends Node
 
-var p1_points
-var p2_points
+@export var p1_points:int
+@export var p2_points:int
+@onready var _saver_loader = %SaverLoader
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -40,6 +41,7 @@ func _on_player_2_touched(body):
 func _on_level_left_touched(_body):
 	p2_points += 1
 	$Ball.death()
+	print("BOLA", $Ball.position)
 	$Score2.text = str(p2_points)
 	$Ball.start($StartPositionBall.position)
 
@@ -48,3 +50,9 @@ func _on_level_right_touched(_body):
 	$Ball.death()
 	$Score1.text = str(p1_points)
 	$Ball.start($StartPositionBall.position)
+
+func _on_save_button_pressed():
+	_saver_loader.save_game()
+
+func _on_load_button_pressed():
+	_saver_loader.load_game()

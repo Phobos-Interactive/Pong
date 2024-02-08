@@ -80,7 +80,7 @@ animations = [{
 "speed": 10.0
 }]
 
-[node name="Ball" type="CharacterBody2D"]
+[node name="Ball" type="CharacterBody2D" groups=["game_events"]]
 collision_mask = 5
 script = ExtResource("1_oli8x")
 

@@ -1,56 +1,92 @@
-[gd_scene load_steps=6 format=3 uid="uid://dp87dol6lm1aa"]
+[gd_scene load_steps=7 format=3 uid="uid://dp87dol6lm1aa"]
 
 [ext_resource type="PackedScene" uid="uid://crkqssmru087f" path="res://player.tscn" id="1_brjn7"]
 [ext_resource type="Script" path="res://main.gd" id="1_phyuh"]
 [ext_resource type="PackedScene" uid="uid://da1exan0mfhmu" path="res://level.tscn" id="2_i3s7h"]
 [ext_resource type="PackedScene" uid="uid://c1lrynavlabdg" path="res://ball.tscn" id="3_jlaej"]
 [ext_resource type="AudioStream" uid="uid://cnld5txxcv5jq" path="res://BGM148-130206-abarerukaizouikimono-wav.wav" id="5_ypx8s"]
+[ext_resource type="Script" path="res://save_script/saver_loader.gd" id="6_fcgqy"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_phyuh")
 
 [node name="Player1" parent="." instance=ExtResource("1_brjn7")]
-position = Vector2(150, 325)
+unique_name_in_owner = true
+position = Vector2(149, 322)
 
 [node name="Player2" parent="." instance=ExtResource("1_brjn7")]
-position = Vector2(1000, 325)
+unique_name_in_owner = true
+position = Vector2(999, 322)
 action_up = "up_p2"
 action_down = "down_p2"
 
 [node name="Level" parent="." instance=ExtResource("2_i3s7h")]
+position = Vector2(-1, -3)
 
 [node name="Ball" parent="." instance=ExtResource("3_jlaej")]
-position = Vector2(580, 325)
+position = Vector2(579, 322)
 
 [node name="StartPosition1" type="Marker2D" parent="."]
-position = Vector2(150, 325)
+position = Vector2(149, 322)
 
 [node name="StartPosition2" type="Marker2D" parent="."]
-position = Vector2(1000, 325)
+position = Vector2(999, 322)
 
 [node name="StartPositionBall" type="Marker2D" parent="."]
-position = Vector2(580, 325)
+position = Vector2(579, 322)
 
 [node name="Score1" type="Label" parent="."]
-offset_left = 400.0
-offset_top = 80.0
-offset_right = 410.0
-offset_bottom = 106.0
+offset_left = 399.0
+offset_top = 77.0
+offset_right = 428.0
+offset_bottom = 149.0
 theme_override_font_sizes/font_size = 50
 text = "0"
 
 [node name="Score2" type="Label" parent="."]
-offset_left = 750.0
-offset_top = 80.0
-offset_right = 790.0
-offset_bottom = 106.0
+offset_left = 749.0
+offset_top = 77.0
+offset_right = 789.0
+offset_bottom = 149.0
 theme_override_font_sizes/font_size = 50
 text = "0"
 
 [node name="BGM" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_ypx8s")
 volume_db = 1.0
-autoplay = true
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="MarginContainer" type="MarginContainer" parent="UI"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -279.0
+offset_top = -104.0
+offset_right = 280.0
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 460
+
+[node name="SaveButton" type="Button" parent="UI/MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "SAVE"
+
+[node name="LoadButton" type="Button" parent="UI/MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "LOAD"
+
+[node name="Utilities" type="Node" parent="."]
+
+[node name="SaverLoader" type="Node" parent="Utilities"]
+unique_name_in_owner = true
+script = ExtResource("6_fcgqy")
 
 [connection signal="touched" from="Player1" to="." method="_on_player_1_touched"]
 [connection signal="touched" from="Player2" to="." method="_on_player_2_touched"]
@@ -58,3 +94,5 @@ autoplay = true
 [connection signal="left_touched" from="Level" to="." method="_on_level_left_touched"]
 [connection signal="right_touched" from="Level" to="." method="_on_level_right_touched"]
 [connection signal="up_touched" from="Level" to="." method="_on_level_up_touched"]
+[connection signal="pressed" from="UI/MarginContainer/HBoxContainer/SaveButton" to="." method="_on_save_button_pressed"]
+[connection signal="pressed" from="UI/MarginContainer/HBoxContainer/LoadButton" to="." method="_on_load_button_pressed"]

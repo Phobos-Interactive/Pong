@@ -1,10 +1,34 @@
 extends CharacterBody2D
 
-@export var speed = 22
+@export var speed = 4
 var direction = Vector2.ZERO
+
+var _loading = true
+
+func on_save_game(saved_data:Array[SavedData]):
+	var my_data = SavedBallData.new()
+	my_data.position = position
+	my_data.scene_path = scene_file_path
+	my_data.direction = direction
+	print("posicao salva:", my_data.position)
+	saved_data.append(my_data)
+	
+func on_before_load_game():
+	print("bola deletada")
+	get_parent().remove_child(self)
+	queue_free()
+
+func on_load_game(saved_data:SavedData):
+	var my_data = saved_data as SavedBallData
+	global_position = my_data.position
+	direction = my_data.direction
+	_loading = false
+	print("posicao carregada:", my_data.position)
+	print("posicao collision:", $CollisionShape2D.global_position)
 
 # Reinicia a bola na posiçao "pos"
 func start(pos):
+	_loading = false
 	$AnimatedSprite2D.play("default")
 	position = pos
 	# escolhe uma direcao aleatoria
@@ -23,5 +47,7 @@ func death():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(_delta):
-	velocity = direction * speed
-	move_and_slide()
+	print(position)
+	if not _loading:
+		velocity = direction * speed
+		move_and_slide()
