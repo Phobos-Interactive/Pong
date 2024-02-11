@@ -41,7 +41,6 @@ func _on_player_2_touched(body):
 func _on_level_left_touched(_body):
 	p2_points += 1
 	$Ball.death()
-	print("BOLA", $Ball.position)
 	$Score2.text = str(p2_points)
 	$Ball.start($StartPositionBall.position)
 

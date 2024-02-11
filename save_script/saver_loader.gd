@@ -35,16 +35,9 @@ func load_game():
 	
 	for item in saved_game.saved_data:
 		var scene = load(item.scene_path) as PackedScene
-		scene.set_block_signals(true)
 		var restored_node = scene.instantiate()
-		print("AAAAAAAAAAAAAAA")
+
 		main.add_child(restored_node)
-		print("BBBBBBBBBB")
 		
 		if restored_node.has_method("on_load_game"):
-			print("CCCCCCCCCCC")
 			restored_node.on_load_game(item)
-			print("DDDDDDDDDDDDDD")
-			
-		restored_node.set_block_signals(true)
-		print("EEEEEEEEEE")
