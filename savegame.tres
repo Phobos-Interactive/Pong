@@ -1,18 +1,36 @@
-[gd_resource type="Resource" script_class="SavedGame" load_steps=4 format=3]
+[gd_resource type="Resource" script_class="SavedGame" load_steps=7 format=3]
 
-[ext_resource type="Script" path="res://saved_ball_data.gd" id="1_bpks5"]
-[ext_resource type="Script" path="res://save_script/saved_game.gd" id="2_fcce4"]
+[ext_resource type="Script" path="res://elements/ball/saved_ball_data.gd" id="1_sm6kr"]
+[ext_resource type="Script" path="res://save_script/saved_game.gd" id="2_a1rtd"]
 
-[sub_resource type="Resource" id="Resource_e8ihe"]
-script = ExtResource("1_bpks5")
-direction = Vector2(-11.3189, -18.8648)
-position = Vector2(696.159, 327.591)
-scene_path = "res://ball.tscn"
+[sub_resource type="Resource" id="Resource_h0fij"]
+script = ExtResource("1_sm6kr")
+direction = Vector2(17.3657, 13.5067)
+position = Vector2(6182.29, 4046.24)
+scene_path = "res://elements/ball/ball.tscn"
+
+[sub_resource type="Resource" id="Resource_h7x7t"]
+script = ExtResource("1_sm6kr")
+direction = Vector2(-14.616, 16.443)
+position = Vector2(-1208.91, 1821.49)
+scene_path = "res://elements/ball/ball.tscn"
+
+[sub_resource type="Resource" id="Resource_e6d8c"]
+script = ExtResource("1_sm6kr")
+direction = Vector2(15.5563, 15.5563)
+position = Vector2(1862.4, 966.551)
+scene_path = "res://elements/ball/ball.tscn"
+
+[sub_resource type="Resource" id="Resource_gucm2"]
+script = ExtResource("1_sm6kr")
+direction = Vector2(17.1791, -13.7433)
+position = Vector2(579, 332.078)
+scene_path = "res://elements/ball/ball.tscn"
 
 [resource]
-script = ExtResource("2_fcce4")
-score_p1 = 1
-score_p2 = 0
-p1_pos = Vector2(149, 468.667)
-p2_pos = Vector2(999, 542)
-saved_data = Array[Resource("res://save_script/saved_data.gd")]([SubResource("Resource_e8ihe")])
+script = ExtResource("2_a1rtd")
+score_p1 = 2
+score_p2 = 1
+p1_pos = Vector2(149, 580.59)
+p2_pos = Vector2(999, 333.859)
+saved_data = Array[Resource("res://save_script/saved_data.gd")]([SubResource("Resource_h0fij"), SubResource("Resource_h7x7t"), SubResource("Resource_e6d8c"), SubResource("Resource_gucm2")])

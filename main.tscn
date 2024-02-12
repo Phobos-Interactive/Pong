@@ -1,14 +1,15 @@
 [gd_scene load_steps=7 format=3 uid="uid://dp87dol6lm1aa"]
 
-[ext_resource type="PackedScene" uid="uid://crkqssmru087f" path="res://player.tscn" id="1_brjn7"]
+[ext_resource type="PackedScene" uid="uid://crkqssmru087f" path="res://elements/player/player.tscn" id="1_brjn7"]
 [ext_resource type="Script" path="res://main.gd" id="1_phyuh"]
-[ext_resource type="PackedScene" uid="uid://da1exan0mfhmu" path="res://level.tscn" id="2_i3s7h"]
-[ext_resource type="PackedScene" uid="uid://c1lrynavlabdg" path="res://ball.tscn" id="3_jlaej"]
-[ext_resource type="AudioStream" uid="uid://cnld5txxcv5jq" path="res://BGM148-130206-abarerukaizouikimono-wav.wav" id="5_ypx8s"]
+[ext_resource type="PackedScene" uid="uid://da1exan0mfhmu" path="res://elements/level/level.tscn" id="2_i3s7h"]
+[ext_resource type="PackedScene" uid="uid://c1lrynavlabdg" path="res://elements/ball/ball.tscn" id="3_jlaej"]
+[ext_resource type="AudioStream" uid="uid://cnld5txxcv5jq" path="res://assets/BGM148-130206-abarerukaizouikimono-wav.wav" id="5_ypx8s"]
 [ext_resource type="Script" path="res://save_script/saver_loader.gd" id="6_fcgqy"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_phyuh")
+ball_scene = ExtResource("3_jlaej")
 
 [node name="Player1" parent="." instance=ExtResource("1_brjn7")]
 unique_name_in_owner = true

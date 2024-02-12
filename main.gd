@@ -2,6 +2,7 @@ extends Node
 
 @export var p1_points:int
 @export var p2_points:int
+@export var ball_scene:PackedScene
 @onready var _saver_loader = %SaverLoader
 
 # Called when the node enters the scene tree for the first time.
@@ -31,24 +32,30 @@ func _on_level_down_touched(body):
 # tocou em um player = reflete verticalmente
 func _on_player_1_touched(body):
 	body.direction.x *= -1
-	$Ball.flip()
+	if body.has_method("flip"):
+		body.flip()
 
 func _on_player_2_touched(body):
 	body.direction.x *= -1
-	$Ball.flip()
+	if body.has_method("flip"):
+		body.flip()
 
 # tocou em um dos lados do level = da um ponto para o jogador, reseta a bola
 func _on_level_left_touched(_body):
 	p2_points += 1
 	$Ball.death()
 	$Score2.text = str(p2_points)
-	$Ball.start($StartPositionBall.position)
+	var new_ball = ball_scene.instantiate()
+	$".".call_deferred("add_child", new_ball)
+	new_ball.call_deferred("start", $StartPositionBall.position)
 
 func _on_level_right_touched(_body):
 	p1_points += 1
 	$Ball.death()
 	$Score1.text = str(p1_points)
-	$Ball.start($StartPositionBall.position)
+	var new_ball = ball_scene.instantiate()
+	$".".call_deferred("add_child", new_ball)
+	new_ball.call_deferred("start", $StartPositionBall.position)
 
 func _on_save_button_pressed():
 	_saver_loader.save_game()
