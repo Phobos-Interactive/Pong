@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://c2qv8g2kfdbh8"]
+
+[ext_resource type="Script" path="res://elements/inventory/inventory.gd" id="1_icgib"]
+[ext_resource type="PackedScene" uid="uid://b2f6ebyedf6wu" path="res://elements/inventory/item_slot.tscn" id="2_ubonr"]
+
+[node name="Inventory" type="PanelContainer"]
+offset_left = 21.0
+offset_top = 18.0
+offset_right = 360.0
+offset_bottom = 82.0
+script = ExtResource("1_icgib")
+slot_scene = ExtResource("2_ubonr")
+
+[node name="GridContainer" type="GridContainer" parent="."]
+layout_mode = 2
+columns = 10

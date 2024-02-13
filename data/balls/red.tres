@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="BallType" load_steps=3 format=3 uid="uid://c3v1tbphgddo0"]
+
+[ext_resource type="Script" path="res://models/ball_type.gd" id="1_foh2m"]
+[ext_resource type="Texture2D" uid="uid://dpdlmqr0kqeh7" path="res://assets/Sprites/Space Game/PNG/Projectiles/4.png" id="2_40srg"]
+
+[resource]
+script = ExtResource("1_foh2m")
+color = "red"
+texture = ExtResource("2_40srg")

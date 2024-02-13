@@ -19,8 +19,6 @@ func start_game():
 	$Player2/AnimatedSprite2D.flip_v = true
 	$Player2.start($StartPosition2.position)
 	$Ball.start($StartPositionBall.position)
-	$Score1.text = "0"
-	$Score2.text = "0"
 
 # tocou em cima ou embaixo = reflete horizontalmente
 func _on_level_up_touched(body):
@@ -41,18 +39,20 @@ func _on_player_2_touched(body):
 		body.flip()
 
 # tocou em um dos lados do level = da um ponto para o jogador, reseta a bola
-func _on_level_left_touched(_body):
+func _on_level_left_touched(body):
 	p2_points += 1
-	$Ball.death()
-	$Score2.text = str(p2_points)
+	$UI/InventoryP2.add(body.type)
+	body.death()
+	
 	var new_ball = ball_scene.instantiate()
 	$".".call_deferred("add_child", new_ball)
 	new_ball.call_deferred("start", $StartPositionBall.position)
 
-func _on_level_right_touched(_body):
+func _on_level_right_touched(body):
 	p1_points += 1
-	$Ball.death()
-	$Score1.text = str(p1_points)
+	$UI/InventoryP1.add(body.type)
+	body.death()
+	
 	var new_ball = ball_scene.instantiate()
 	$".".call_deferred("add_child", new_ball)
 	new_ball.call_deferred("start", $StartPositionBall.position)

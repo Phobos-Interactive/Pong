@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dp87dol6lm1aa"]
+[gd_scene load_steps=8 format=3 uid="uid://dp87dol6lm1aa"]
 
 [ext_resource type="PackedScene" uid="uid://crkqssmru087f" path="res://elements/player/player.tscn" id="1_brjn7"]
 [ext_resource type="Script" path="res://main.gd" id="1_phyuh"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://c1lrynavlabdg" path="res://elements/ball/ball.tscn" id="3_jlaej"]
 [ext_resource type="AudioStream" uid="uid://cnld5txxcv5jq" path="res://assets/BGM148-130206-abarerukaizouikimono-wav.wav" id="5_ypx8s"]
 [ext_resource type="Script" path="res://save_script/saver_loader.gd" id="6_fcgqy"]
+[ext_resource type="PackedScene" uid="uid://c2qv8g2kfdbh8" path="res://elements/inventory/inventory.tscn" id="6_nxqmh"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_phyuh")
@@ -35,22 +36,6 @@ position = Vector2(999, 322)
 
 [node name="StartPositionBall" type="Marker2D" parent="."]
 position = Vector2(579, 322)
-
-[node name="Score1" type="Label" parent="."]
-offset_left = 399.0
-offset_top = 77.0
-offset_right = 428.0
-offset_bottom = 149.0
-theme_override_font_sizes/font_size = 50
-text = "0"
-
-[node name="Score2" type="Label" parent="."]
-offset_left = 749.0
-offset_top = 77.0
-offset_right = 789.0
-offset_bottom = 149.0
-theme_override_font_sizes/font_size = 50
-text = "0"
 
 [node name="BGM" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_ypx8s")
@@ -82,6 +67,12 @@ text = "SAVE"
 [node name="LoadButton" type="Button" parent="UI/MarginContainer/HBoxContainer"]
 layout_mode = 2
 text = "LOAD"
+
+[node name="InventoryP1" parent="UI" instance=ExtResource("6_nxqmh")]
+
+[node name="InventoryP2" parent="UI" instance=ExtResource("6_nxqmh")]
+offset_left = 787.0
+offset_right = 1126.0
 
 [node name="Utilities" type="Node" parent="."]
 

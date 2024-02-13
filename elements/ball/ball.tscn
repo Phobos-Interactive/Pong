@@ -1,103 +1,26 @@
-[gd_scene load_steps=15 format=3 uid="uid://c1lrynavlabdg"]
+[gd_scene load_steps=7 format=3 uid="uid://c1lrynavlabdg"]
 
 [ext_resource type="Script" path="res://elements/ball/ball.gd" id="1_oli8x"]
 [ext_resource type="Texture2D" uid="uid://wxe1ypb2lh7o" path="res://assets/Sprites/Space Game/PNG/Projectiles/5.png" id="2_1ao6f"]
-[ext_resource type="Texture2D" uid="uid://ba1gk88fggtup" path="res://assets/Sprites/explosion-6.png" id="3_6ybdp"]
-
-[sub_resource type="CanvasTexture" id="CanvasTexture_8nleq"]
+[ext_resource type="Resource" uid="uid://cd2j1j5wl67py" path="res://data/balls/blue.tres" id="2_tsyv2"]
+[ext_resource type="Resource" uid="uid://bcxtn352guw8j" path="res://data/balls/green.tres" id="3_713uo"]
+[ext_resource type="Resource" uid="uid://c3v1tbphgddo0" path="res://data/balls/red.tres" id="4_hytyx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g7ely"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_mo0r6"]
-atlas = ExtResource("3_6ybdp")
-region = Rect2(0, 0, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_e3t7y"]
-atlas = ExtResource("3_6ybdp")
-region = Rect2(48, 0, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_wjxs8"]
-atlas = ExtResource("3_6ybdp")
-region = Rect2(96, 0, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_x4wq6"]
-atlas = ExtResource("3_6ybdp")
-region = Rect2(144, 0, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_y3cyt"]
-atlas = ExtResource("3_6ybdp")
-region = Rect2(192, 0, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_srtqb"]
-atlas = ExtResource("3_6ybdp")
-region = Rect2(240, 0, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_w8qlu"]
-atlas = ExtResource("3_6ybdp")
-region = Rect2(288, 0, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_u8brs"]
-atlas = ExtResource("3_6ybdp")
-region = Rect2(336, 0, 48, 48)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_gikmm"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("2_1ao6f")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_mo0r6")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_e3t7y")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_wjxs8")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_x4wq6")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_y3cyt")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_srtqb")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_w8qlu")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_u8brs")
-}],
-"loop": true,
-"name": &"explode",
-"speed": 10.0
-}]
 
 [node name="Ball" type="CharacterBody2D" groups=["game_events"]]
 collision_mask = 5
 slide_on_ceiling = false
 script = ExtResource("1_oli8x")
+ballTypes = Array[Resource("res://models/ball_type.gd")]([ExtResource("2_tsyv2"), ExtResource("3_713uo"), ExtResource("4_hytyx")])
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-visible = false
-scale = Vector2(20, 20)
-texture = SubResource("CanvasTexture_8nleq")
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("2_1ao6f")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(19, 0)
 shape = SubResource("RectangleShape2D_g7ely")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(-17, -1)
-scale = Vector2(0.40625, 0.40625)
-sprite_frames = SubResource("SpriteFrames_gikmm")
-frame_progress = 0.578869
 
 [node name="RespawnTimer" type="Timer" parent="."]
 wait_time = 0.1

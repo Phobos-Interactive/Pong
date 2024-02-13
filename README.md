@@ -10,6 +10,8 @@ https://www.youtube.com/watch?v=mZ-Fal6Gv8E (Jogo Pong)
 
 https://www.youtube.com/watch?v=43BZsLZheA4 (Mecanica de Save e Load)
 
+https://www.youtube.com/watch?v=4vAkTHeoORk (Sistema de inventário e itens)
+
 ----
 
 Arte (foguetes, cometa, plano de fundo):
